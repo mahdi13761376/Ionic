@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import {Component, OnInit} from '@angular/core';
+import {ActionSheetController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-action-sheet',
+  templateUrl: './action-sheet.page.html',
+  styleUrls: ['./action-sheet.page.scss'],
 })
-export class HomePage {
+export class ActionSheetPage implements OnInit {
 
-  constructor(public actionSheetController: ActionSheetController) {}
+  constructor(public actionSheetController: ActionSheetController) {
+  }
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
@@ -50,8 +51,12 @@ export class HomePage {
     });
     await actionSheet.present();
 
-    const { role } = await actionSheet.onDidDismiss();
+    const {role} = await actionSheet.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
+  }
+
+
+  ngOnInit() {
   }
 
 }
